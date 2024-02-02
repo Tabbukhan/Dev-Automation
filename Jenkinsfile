@@ -17,11 +17,15 @@ pipeline {
                 }
             }
         }
+        
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-user')]) {
-                   sh 'docker login -u tabasumkhan534 -p ${docker-user}'
+                   docker.withRegistry('https://registry.hub.docker.com', 'docker-pwd') {
+                        // Your Docker build and push steps here
+                    
+                        docker.withRegistry([credentialsId: 'docker-pwd', url: 'https://registry.hub.docker.com']) {
+                            docker.image('tabasumkhan534/devops-integration').push()
 
 }
                    sh 'docker push tabasumkhan534/devops-integration'
