@@ -24,12 +24,8 @@ pipeline {
                     sh 'docker login -u tabasumkhan534 -p ${dockerpwd}'
                     sh 'docker push tabasumkhan534/devops-integration:my-image'
                    }
-            
-       
-               
-                   
             }
-        
-       }
+       }   
     }
+}
 
