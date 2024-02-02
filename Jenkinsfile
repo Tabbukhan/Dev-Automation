@@ -13,7 +13,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t javatechie/devops-integration .'
+                    sh 'docker build -t tabasumkhan534/devops-integration .'
                 }
             }
         }
@@ -21,10 +21,10 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'docker-jenkins', variable: 'docker-jenkins')]) {
-                   sh 'docker login -u javatechie -p ${docker-jenkins}'
+                   sh 'docker login -u tabasumkhan534 -p ${docker-jenkins}'
 
 }
-                   sh 'docker push javatechie/devops-integration'
+                   sh 'docker push tabasumkhan534/devops-integration'
                 }
             }
         }
