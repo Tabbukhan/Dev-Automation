@@ -22,9 +22,9 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     sh 'docker login -u tabasumkhan534 -p ${dockerpwd}'
-                    
+                    sh 'docker push tabasumkhan534/devops-integration'
                    }
-                sh 'docker push tabasumkhan534/devops-integration'
+               
                    }
             }
         
