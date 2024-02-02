@@ -1,0 +1,16 @@
+stage('Build and Push Docker Image') {
+    steps {
+        script {
+            docker.withRegistry('https://registry.hub.docker.com', 'docker-pwd') {
+                // Explicitly log in to DockerHub
+                sh 'docker login -u tabasumkhan534 -p ${docker-pwd}'
+                
+                // Your Docker build and push steps here
+                docker.build('devops-integration')
+                docker.withRegistry([credentialsId: 'docker-pwd', url: 'https://registry.hub.docker.com']) {
+                    docker.image('devops-integration').push()
+                }
+            }
+        }
+    }
+}
