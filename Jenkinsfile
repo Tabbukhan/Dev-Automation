@@ -21,7 +21,7 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
-                    sh 'docker login -u tabasumkhan534 -p ${dockerhubpwd} docker.io'
+                    sh 'docker login -u tabasumkhan534 -p ${dockerpwd}'
                     sh 'docker push tabasumkhan534/devops-integration:my-image'
                    }
             }
