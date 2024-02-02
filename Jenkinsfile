@@ -6,7 +6,7 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Java-Techie-jt/devops-automation']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Tabbukhan/Dev-Automation']]])
                 sh 'mvn clean install'
             }
         }
@@ -21,15 +21,10 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   docker.withRegistry('https://registry.hub.docker.com', 'docker-pwd') {
-                        // Your Docker build and push steps here
-                    
-                        docker.withRegistry([credentialsId: 'docker-pwd', url: 'https://registry.hub.docker.com']) {
-                            docker.image('tabasumkhan534/devops-integration').push()
-
-}
-                   sh 'docker push tabasumkhan534/devops-integration'
-                }
+                   withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
+                   sh 'docker login -u tabasumkhan534 -p ${docker-pwd}'
+                   }
+                   }
             }
         }
         stage('Deploy to k8s'){
