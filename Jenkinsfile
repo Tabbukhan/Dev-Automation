@@ -20,8 +20,8 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'docker-jenkins', variable: 'docker-jenkins')]) {
-                   sh 'docker login -u tabasumkhan534 -p ${docker-jenkins}'
+                   withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-user')]) {
+                   sh 'docker login -u tabasumkhan534 -p ${docker-user}'
 
 }
                    sh 'docker push tabasumkhan534/devops-integration'
