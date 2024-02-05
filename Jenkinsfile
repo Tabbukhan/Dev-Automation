@@ -25,7 +25,7 @@ pipeline {
                     //sh 'docker login -u tabasumkhan534 -p $dockerpwd docker.io'
                     echo "Executing docker push command..."
                    }
-                sh 'docker push tabasumkhan534/devops-integration'
+                sh 'docker push tabasumkhan534/devops-integration:myimage'
             }
         } 
 
