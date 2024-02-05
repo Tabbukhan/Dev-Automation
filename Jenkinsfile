@@ -30,8 +30,8 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
-                    echo "Executing docker login command..."
-                    sh 'docker login -u tabasumkhan534 -p $dockerpwd docker.io'
+                    //echo "Executing docker login command..."
+                    //sh 'docker login -u tabasumkhan534 -p $dockerpwd docker.io'
                     echo "Executing docker push command..."
                    }
                 
