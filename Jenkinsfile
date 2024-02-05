@@ -14,7 +14,7 @@ pipeline {
             steps{
                 script{
                     sh 'docker build -t tabasumkhan534/devops-integration:myimage .'
-                    sh 'docker tag myimage tabasumkhan534/devops-integration:myimage'
+                    //sh 'docker tag myimage tabasumkhan534/devops-integration:myimage'
                 }
             }
         }
