@@ -13,7 +13,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t tabasumkhan534/devops-integration .'
+                    sh 'docker build -t tabasumkhan534/devops-integration:myimage .'
                 }
             }
         }
@@ -25,7 +25,8 @@ pipeline {
                     //sh 'docker login -u tabasumkhan534 -p $dockerpwd docker.io'
                     echo "Executing docker push command..."
                    }
-                sh 'docker push tabasumkhan534/devops-integration:myimage'
+                docker tag first-image tabasumkhan534/devops-integration:first-image
+                sh 'docker push tabasumkhan534/devops-integration:first-image'
             }
         } 
 
