@@ -3,9 +3,9 @@ pipeline {
     tools{
         maven 'maven'
     }
-   // environment{
-     //   DOCKERHUB_CREDENTIALS =credentials('dockertocken')
-    //}
+   environment {
+        DOCKER_HUB = credentials('DOCKER-CREDS')
+    }
     stages{
         stage('Build Maven'){
             steps{
@@ -22,19 +22,19 @@ pipeline {
             }
         }
 
-       // stage('docker login'){
-         //   steps{
-           // sh 'echo $docker-pwd | docker login -u $docker-user --password-stdin'
-            //}
-        //}
-        stage('Push image to Hub'){
+        stage('docker login'){
             steps{
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
+            sh 'echo $DOCKER_HUB_PSW | docker login -u $DOCKER_HUB_USR --password-stdin'
+            }
+        }
+        stage('Push image to Hub'){
+            
+            steps{
+               // withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     //echo "Executing docker login command..."
                     //sh 'docker login -u tabasumkhan534 -p $dockerpwd docker.io'
-                    echo "Executing docker push command..."
-                   }
-                
+                   //}
+                echo "Executing docker push command..."
                 sh 'docker push tabasumkhan534/devops-integration:myimage'
             }
         } 
