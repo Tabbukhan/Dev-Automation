@@ -38,6 +38,7 @@ pipeline {
                 sh 'docker push tabasumkhan534/devops-integration:myimage'
             }
         } 
+        // Vulnerability scanner tool
         stage('trivy scan') {
            steps{
             sh "trivy tabasumkhan534/devops-integration:myimage"
