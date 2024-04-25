@@ -38,6 +38,11 @@ pipeline {
                 sh 'docker push tabasumkhan534/devops-integration:myimage'
             }
         } 
+        stage('trivy scan') {
+           steps{
+            sh "trivy tabasumkhan534/devops-integration:myimage"
+          }
+        }
     }
 }
 
